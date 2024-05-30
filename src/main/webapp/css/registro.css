@@ -1,0 +1,154 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: Roboto;
+}
+
+/*ESTILOS PARA EL NAV*/
+
+nav{
+    background-color: #ff9f1c;
+    height: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    margin-left: 80px;
+}
+
+.logo img{
+    display: flex;
+    flex-wrap: wrap;
+    width: 120px; /* Ajusta el ancho del logo */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+
+.botonesNav{
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 80px;
+    gap: 40px; /*Doy espacio entre los botones*/
+    color: white;
+}
+
+.botonesNav a {
+    color: white; /* Aplica color blanco solo a los enlaces dentro de .botonesNav */
+    text-decoration: none;
+}
+
+.botonesNav a:hover{
+    color: #2EC4B6;
+}
+
+/*ESTILOS PARA EL SECTION*/
+
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px); /* Resta la altura del nav para que no quede oculto*/
+    width: 100%;
+    background: url(../img/cabeceraLogin.jpg) no-repeat;
+    background-position: center; /*Centra la imagen*/
+    background-size: cover; /*cubre el tamaño*/
+}
+
+.contenedor{
+    width: 400px;
+    height: 550px;
+    border: 4px solid rgb(255, 255, 255);
+    backdrop-filter: blur(18px);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center; /*Centra el contenido del contenedor, sus div en el eje vertical*/
+    align-items: center; /*Centra el contenido del contenedor, sus div en el eje horizontal*/
+}
+
+.contenedor h2{
+    font-size: 2.3rem;
+    color: white;
+    text-align: center;
+}
+
+.input-contenedor{
+    position: relative;
+    margin: 30px 0;
+    width: 300px;
+    border-bottom: 2px solid white;
+}
+
+.input-contenedor label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 1rem;
+    font-family: Roboto;
+    pointer-events: none;
+    transition: .6s;
+}
+
+input:focus + label,
+input:valid + label{
+    top: -10px;
+}
+
+.input-contenedor input{
+    width: 100%;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: -35px 0 5px;
+    color: white;
+}
+
+.input-contenedor i{
+    position: absolute;
+    color: white;
+    font-size: 1.6rem;
+    top: 19px;
+    right: 8px;
+}
+
+
+ button{
+    width: 100%;
+    height: 45px;
+    border-radius: 40px;
+    background-color: white;
+    color: #011627;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    font-size: 1rem;
+    transition: .4s;
+ }
+
+ button:hover{
+    background-color: #ff9f1c;
+    color: white;
+ }
+
+ .registrar{
+    font-size: 18px;
+    color: white;
+    text-align: center;
+    margin: 20px 0 10px;
+ }
+
+
+ .registrar a{
+    color: #ff9f1c;
+ }

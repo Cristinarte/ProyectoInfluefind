@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>paginaInfluencer</title>
+    <link rel="stylesheet" href="css/criticas.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<script>
+	
+	function llamada(){
+	        fetch('AltaComentario') 
+	        .then(res => res.json())
+	        .then (res => pintarResultados(res)); 
+	   }
+	
+	 
+	
+
+ 
+	 
+	 
+	 
+	function pintarResultados(datos) {
+	    let html = "<table class='contenedorCriticas'>";
+	    for (var i = 0; i < datos.length; i++) {
+	        html += "<tr>";
+	        html += "<td class='comentarioAnonimo'>Comentario anónimo</td>"; // Celda para "Comentario anónimo"
+	        html += "</tr>";
+	        html += "<tr>";
+	        html += "<td>" + datos[i].comentario + "</td>"; // Celda para el comentario
+	        html += "</tr>";
+	    }
+	    html += "</table>";
+	    document.getElementById("galeria").innerHTML = html;
+	}
+
+
+
+	 window.onload = function(){
+	        llamada();
+	 }
+	 
+	 
+	 
+	 
+	 
+	
+	</script>
+
+
+
+
+</head>
+<body>
+
+    <nav class="nav1">
+        <div class="logo">
+            <a href="index.html">
+                <img src="img/logo2.png" alt="logo influefind">
+            </a>   
+        </div>
+        <div class="botonesNav">
+            <div class="login"><a href="login.html">Iniciar Sesión</a></div>
+            <div class="registro"><a href="registro.html">Registrarse</a></div>
+        </div>
+    </nav>
+
+    
+    <div class="campoNombre"><h2>AÑADE TU COMENTARIO</h2></div>
+   
+   
+
+    <div class="contenedorFormulario">
+        <form action="AltaComentario" method="post" class="formulario">
+            <label for="">Comenta aquí:</label>
+            <textarea name="comentario" id="comentario" cols="30" row s="10"></textarea>
+            <input type="submit" name="enviar" id="enviar">
+        </form>
+    </div>
+
+    <div class="campoNombre"><h2>SUGERENCIAS Y CRÍTICAS</h2></div>
+
+    <div class="contenedorCriticas">
+        <div id="galeria">
+            
+        </div>
+    </div>
+
+	
+    
+    
+</body>
+</html>

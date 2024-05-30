@@ -1,0 +1,128 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Roboto;
+    text-decoration: none; /* Para quitar el subrayado de las etiquetas a */
+}
+
+/*ESTILOS PARA EL NAV*/
+
+.nav1{
+    background-color: #ff9f1c;
+    height: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    margin-left: 120px;
+}
+
+.logo img{
+    display: flex;
+    flex-wrap: wrap;
+    width: 120px; /* Ajusta el ancho del logo */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+
+.botonesNav{
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 120px;
+    gap: 40px; /*Doy espacio entre los botones*/
+    color: white;
+}
+
+.botonesNav a:hover{
+    color: #2EC4B6;
+}
+
+.botonesNav a {
+    color: white; /* Aplica color blanco solo a los enlaces dentro de .botonesNav */
+    text-decoration: none;
+}
+
+/*ESTILOS PARA PARTE DATOS*/
+/*DATOS*/
+
+.campoNombre{
+    width: 60%;  
+    height: auto;
+    background-color: #ff9f1c;
+    margin: auto; /* Centra horizontalmente la sección */
+    margin-top: 100px;
+    color: white;
+    padding: 10px;
+    margin-bottom:50px;
+    
+}
+
+.sectionSuperior{
+    
+    width: 78%;
+    height: auto;    
+    margin: auto; /* Centra horizontalmente la sección */
+    margin-top: 20px;
+    display: flex;
+	justify-content: space-between;
+}
+
+.parteDatos{
+    width: 800px;
+    height: auto;
+    
+ 	
+}
+
+.campo{
+    margin-bottom: 5px;
+}
+
+.campo p{
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff9f1c;
+}
+
+.texto p {
+    text-align: justify; /* Justifica el texto dentro del elemento p con la clase descripcion */
+    color: #011627;
+}
+
+.fila {
+    margin-bottom: 20px; /* Agrega 20px de espacio vertical entre las filas */
+}
+
+#url a {
+    color: #2EC4B6 
+}
+
+
+.parteInfluencer{
+    width: 250px;
+    height: 100%;
+    /*background-color: blue;*/
+  	margin-left: 80px; 
+    
+}
+
+.influencer{
+    width: 250px;
+    height: 100%;
+
+    
+}
+
+.foto{
+    width: 250px;
+    height: 350px;
+    background-color: antiquewhite;
+   
+}
+

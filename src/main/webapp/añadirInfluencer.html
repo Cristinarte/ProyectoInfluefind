@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir Influencer</title>
+    <link rel="stylesheet" href="css/añadirInfluencer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<script>
+	
+		/*Funcion para obtener datos del get y llamar a la funcion que va a pintar el formulario con esos datos.*/
+		function llamada(id,op){
+	        fetch('Listar?id='+id+"&op="+op) 
+	        .then(res => res.json())
+	        .then (res => pintarFormulario(res)); 
+	    }
+		/*Funcion asigna los datos del id obtenido y pintar el formulario con esos datos.*/
+		
+		function pintarFormulario(datos){
+			document.getElementById ("id").value = datos.id;
+			document.getElementById ("nombre").value = datos.nombre;
+			document.getElementById ("nacionalidad").value = datos.nacionalidad;
+			document.getElementById ("fechaNacimiento").value = datos.fechaNacimiento;
+			document.getElementById ("ocupacion").value = datos.ocupacion;
+			document.getElementById ("descripcion").value = datos.descripcion;
+			document.getElementById ("categorias").value = datos.categoria.id;
+			document.getElementById ("rrss").value = datos.redSocial.id;
+			document.getElementById ("url").value = datos.url;
+			document.getElementById ("imagen").value = datos.imagen;
+		
+
+		}
+	
+		/*Funcion js para objtener el valor de un parametro en el GET*/
+	
+		function getParameterByName (name) {
+			name = name.replace(/[\[]/, "\\[").replace(/[\]]/,"\\]");
+			var regex = new RegExp ("[\\?&]"+ name + "=([^&#]*)"),
+			results = regex.exec(location.search);
+			return results === null ?"": decodeURIComponent(results[1].replace(/\+/g," "));
+		}
+	
+		/*Funcion para recuperar el id y la op del navegador*/
+		
+		window.onload = function(){
+			let id = getParameterByName ("id");
+			let op = getParameterByName ("op");
+			llamada(id,op)
+		}
+	
+	</script>
+	
+
+
+</head>
+
+<body>
+    <div class="contenedorGeneral">
+        
+        <div class="contenedorNav">
+
+            <div class="fotoAdmin">
+                <img src="img/fotoAdmin3.svg" alt="">
+            </div>
+            <div class="nombreAdmin">ADMINISTRADOR</div>
+            <div class="menu">
+
+                <div class="perfil">
+                    <div class="icono"><i class="fa-solid fa-user" style="color: #ffffff;"></i></div>
+                    <div class="campo"><a href="#">Perfil</a></div>
+                </div>
+
+                <div class="calendario">
+                    <div class="icono"><i class="fa-solid fa-calendar-days" style="color: #ffffff;"></i></div>
+                    <div class="campo"><a href="#">Calendario</a></div>
+                </div>
+
+                <div class="bandejaEntrada">
+                    <div class="icono"><i class="fa-solid fa-envelope" style="color: #ffffff;"></i></div>
+                    <div class="campo"><a href="#">Bandeja de entrada</a></div>
+                </div>
+
+                <div class="gestionPerfiles">
+                    <div class="icono"><i class="fa-solid fa-user-plus" style="color: #ffffff;"></i></div>
+                    <div class="campo" id="gestionPerfiles"><a href="#">Gestión influencers</a>
+                        <ul class="submenu" id="submenuPerfiles">
+                            <li><a href="añadirInfluencer.html" class="gestion">Añadir Influencer</a></li>
+                            <li><a href="modificarInfluencer.html" class="gestion">Modificar Influencer</a></li>
+                            <li><a href="eliminarInfluencer.html" class="gestion">Eliminar Perfil</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="gestionUsuarios">
+                    <div class="icono"><i class="fa-solid fa-user-plus" style="color: #ffffff;"></i></div>
+                    <div class="campo" id="gestionUsuarios"><a href="#">Gestión usuarios</a>
+                        <ul class="submenu" id="submenuUsuarios">
+                            <li><a href="#" class="gestion">Modificar Usuario</a></li>
+                            <li><a href="#" class="gestion">Eliminar Usuario</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tareas">
+                    <div class="icono"><i class="fa-solid fa-list-check" style="color: #ffffff;"></i></div>
+                    <div class="campo"><a href="#">Tareas</a></div>
+                </div>
+
+                
+
+            </div>
+            <div class="cerrarSesion">
+                <div class="iconoC"><i class="fa-solid fa-xmark" style="color: #FF9F1C;"></i></div>
+                <div class="campoC"><a href="logout">Cerrar Sesión</a></div>
+            </div>
+
+        </div>
+        
+
+        <div class="contenedorDerecha">
+            <div class="contenedorHeader">
+                 <div class="panelControl"> <a href="panel.html"><h2>PANEL DE CONTROL</h2></a> </div>
+                <div class="iconosPanel">
+                    <div class="iconoUsuario"><i class="fa-solid fa-circle-user" style="color: #ffffff;"></i></div>
+                    <div class="iconoFlecha"><i class="fa-solid fa-chevron-down" style="color: #ffffff;"></i></div>
+                </div> 
+            </div>
+
+
+
+            <div class="contenedorArticle">
+                <h1>Añadir influencer</h1>
+                <div class="formulario">
+                    <form action="AltaInfluencer" method="post" enctype = "multipart/form-data">
+						<input type="hidden" id="id" name="id">
+                        <div class="campoFormulario">
+                            <label for="">Nombre:</label>
+                            <input type="text" id="nombre" name="nombre">
+                        </div>
+
+                        <div class="campoFormulario">
+                            <label for="">Nacionalidad:</label>
+                            <input type="text" id="nacionalidad" name="nacionalidad">
+                        </div>
+
+                        <div class="campoFormulario">
+                            <label for="">Fecha de nacimiento:</label>
+                            <input type="text" id="fechaNacimiento" name="fechaNacimiento">
+                        </div>
+
+                        <div class="campoFormulario">
+                            <label for="">Ocupación:</label>
+                            <input type="text" id="ocupacion" name="ocupacion">
+                        </div>
+
+                        <div class="campoFormulario">
+                            <label for="">Descripción:</label>
+                            <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
+                        </div>
+                        
+                        <div class="campoFormulario">
+                            <label for="">Categoría:</label>
+                            <select name="categorias" id="categorias">
+                                <option value="0"></option>
+                                <option value="1">Arte</option>
+                                <option value="2">Beauty</option>
+                                <option value="3">Concienciación</option>
+                                <option value="4">Emprendimiento</option>
+                                <option value="5">Entretenimiento</option>
+                                <option value="6">Gaming</option>
+                                <option value="7">Gastronomía</option>
+                                <option value="8">Health</option>
+                                <option value="9">Humor</option>
+                                <option value="10">Lifestyle</option>
+                                <option value="11">Medioambiente</option>
+                                <option value="12">Moda</option>
+                                <option value="13">Música</option>
+                                <option value="14">Podscast</option>
+                                <option value="15">Viajes</option>
+                            </select>
+                        </div>
+
+                        <div class="campoFormulario">
+                            <label for="">Red social:</label>
+                            <select name="rrss" id="rrss">
+                                <option value="0"></option>
+                                <option value="1">Instagram</option>
+                            </select>
+                        </div>
+
+                        <div class="campoFormulario">
+                            <label for="url">URL:</label>
+                            <input type="text" id="url" name="url">
+                        </div>
+
+                        <div class="campoFormulario">
+                            <label for="imagen">Adjuntar imagen:</label>
+                            <input type="file" name="imagen" id="imagen"> 
+                        </div>
+       
+                        <input type="submit" name="enviar" id="enviar">
+                    </form>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+    </div>
+</body>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+	    var gestionInfluencers = document.getElementById('gestionInfluencers');
+	    var submenuPerfiles = document.getElementById('submenuPerfiles');
+	
+	    gestionInfluencers.addEventListener('click', function(event) {
+	        event.preventDefault();
+	        if (submenuPerfiles.style.display === 'block') {
+	        	submenuPerfiles.style.display = 'none';
+	        } else {
+	        	submenuPerfiles.style.display = 'block';
+	        }
+	    });
+	
+	    var enlacesSubMenu = submenuPerfiles.querySelectorAll('a');
+	    enlacesSubMenu.forEach(function(enlace) {
+	        enlace.addEventListener('click', function(event) {
+	        	submenuPerfiles.style.display = 'none'; // Oculta el submenu al hacer clic en un enlace
+	            // Redirige al enlace href
+	            var href = this.getAttribute('href');
+	            window.location.href = href;
+	        });
+	    });
+	});
+    
+    
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var gestionUsuarios = document.getElementById('gestionUsuarios');
+        var submenuUsuarios = document.getElementById('submenuUsuarios');
+
+        gestionUsuarios.addEventListener('click', function(event) {
+            event.preventDefault();
+            if (submenuUsuarios.style.display === 'block') {
+                submenuUsuarios.style.display = 'none';
+            } else {
+                submenuUsuarios.style.display = 'block';
+            }
+        });
+
+        var enlacesSubMenuUsuarios = submenuUsuarios.querySelectorAll('a'); // Cambia el nombre de la variable
+        enlacesSubMenuUsuarios.forEach(function(enlace) { // Cambia el nombre de la variable
+            enlace.addEventListener('click', function(event) {
+                submenuUsuarios.style.display = 'none'; // Oculta el submenu al hacer clic en un enlace
+                // Redirige al enlace href
+                var href = this.getAttribute('href');
+                window.location.href = href;
+            });
+        });
+    });
+</script>
+
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Eliminar Influencer</title>
+    <link rel="stylesheet" href="css/eliminarInfluencer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<script type="text/javascript">
+
+    function llamada(){
+        fetch('Listar?op=1') 
+        .then(res => res.json())
+        .then (res => pintarResultados(res)); 
+    }
+	
+
+    function borrar(id) {
+        fetch('Listar?id=' + id + '&op=3')
+        .then(res => res.json())
+        .then(res => pintarResultados(res));
+    }
+    
+    function pintarResultados(datos) {
+        let html = "<table>";
+        
+        html += "<tr><th class='atributos'>ID</th><th class='atributos'>Nombre</th><th class='atributos'>Nacionalidad</th><th class='fechaNacimiento'>Fecha de Nacimiento</th><th class='atributos'>Ocupación</th><th class='descripcion'>Descripción</th><th class='atributos'>Categoria</th><th class='atributos'>Red Social</th><th class='atributos'>URL Cuenta</th><th class='atributos'>Foto</th><th class='atributos'>Eliminar</th></tr>";
+        for (var i = 0; i < datos.length; i++) {
+            html += "<tr>";
+            html += "<td>" + datos[i].id + "</td>";
+            html += "<td>" + datos[i].nombre + "</td>";
+            html += "<td>" + datos[i].nacionalidad + "</td>";
+            html += "<td>" + datos[i].fechaNacimiento + "</td>";
+            html += "<td>" + datos[i].ocupacion + "</td>";
+            //PRUEBA: html += "<td>" + datos[i].descripcion + "</td>";
+            html += "<td><a href='#' class='verDescripcion'>Ver</a><div class='descripcion-popup' style='display:none;'><div class='descripcion-popup-content'>" + datos[i].descripcion + "</div><span class='close'>&times;</span></div></td>";
+            html += "<td>" + datos[i].categoria.nombreCategoria + "</td>";
+        	html += "<td>" + datos[i].redSocial.nombrePlataforma + "</td>"; 
+        	html += "<td>" + datos[i].url + "</td>"; 
+        	
+        	
+        
+        	//html += "<td><img src='" + datos[i].imagen+ "' alt='Foto'></td>";
+            html += "<td><img src='css/fotos/" + datos[i].imagen+ "' alt='Foto' width='20' ></td>"; 
+            
+            
+            html += "<td><button onclick='borrar(" + datos[i].id + ")'class='eliminar-button'>Eliminar</button></td>";
+
+           
+
+            html += "</tr>";
+        }
+        html += "</table>";
+        document.getElementById("galeria").innerHTML = html;
+        
+    }
+    
+ 
+
+    
+        
+    
+    
+    
+    
+        
+        //PRUEBA:
+     // Agregar event listener para cada enlace "Ver descripción"
+        var verDescripcionLinks = document.querySelectorAll('.verDescripcion');
+        verDescripcionLinks.forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                // Muestra el cuadro emergente de la descripción
+                this.nextElementSibling.style.display = 'block';
+            });
+        });
+
+        // Agregar event listener para cerrar el cuadro emergente
+        var closeButtons = document.querySelectorAll('.close');
+        closeButtons.forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                // Oculta el cuadro emergente de la descripción
+                this.parentNode.style.display = 'none';
+            });
+        });
+    
+
+    
+    window.onload = function(){
+        llamada();
+    }
+    
+   
+	</script>
+	
+	
+	
+	
+
+
+
+</head>
+<body>
+
+    <div class="contenedorGeneral">
+        
+        <div class="contenedorNav">
+
+            <div class="fotoAdmin">
+                <img src="img/fotoAdmin3.svg" alt="">
+            </div>
+            <div class="nombreAdmin">ADMINISTRADOR</div>
+            <div class="menu">
+
+                <div class="perfil">
+                    <div class="icono"><i class="fa-solid fa-user" style="color: #ffffff;"></i></div>
+                    <div class="campo"><a href="#">Perfil</a></div>
+                </div>
+
+                <div class="calendario">
+                    <div class="icono"><i class="fa-solid fa-calendar-days" style="color: #ffffff;"></i></div>
+                    <div class="campo"><a href="#">Calendario</a></div>
+                </div>
+
+                <div class="bandejaEntrada">
+                    <div class="icono"><i class="fa-solid fa-envelope" style="color: #ffffff;"></i></div>
+                    <div class="campo"><a href="#">Bandeja de entrada</a></div>
+                </div>
+
+                <div class="gestionPerfiles">
+                    <div class="icono"><i class="fa-solid fa-user-plus" style="color: #ffffff;"></i></div>
+                    <div class="campo" id="gestionInfluencers"><a href="#">Gestión influencers</a>
+                        <ul class="submenu" id="submenuPerfiles">
+                            <li><a href="añadirInfluencer.html" class="gestion">Añadir Influencer</a></li>
+                            <li><a href="modificarInfluencer.html" class="gestion">Modificar Influencer</a></li>
+                            <li><a href="eliminarInfluencer.html" class="gestion">Eliminar Influencer</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="gestionUsuarios">
+                    <div class="icono"><i class="fa-solid fa-user-plus" style="color: #ffffff;"></i></div>
+                    <div class="campo" id="gestionUsuarios"><a href="#">Gestión usuarios</a>
+                        <ul class="submenu" id="submenuUsuarios">
+                            <li><a href="#" class="gestion">Modificar Usuario</a></li>
+                            <li><a href="#" class="gestion">Eliminar Usuario</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tareas">
+                    <div class="icono"><i class="fa-solid fa-list-check" style="color: #ffffff;"></i></div>
+                    <div class="campo"><a href="#">Tareas</a></div>
+                </div>
+
+                
+
+            </div>
+            <div class="cerrarSesion">
+                <div class="iconoC"><i class="fa-solid fa-xmark" style="color: #FF9F1C;"></i></div>
+                <div class="campoC"><a href="logout">Cerrar Sesión</a></div>
+            </div>
+
+        </div>
+        
+
+        <div class="contenedorDerecha">
+            <div class="contenedorHeader">
+                 <div class="panelControl"> <a href="panel.html"><h2>PANEL DE CONTROL</h2></a> </div>
+                <div class="iconosPanel">
+                    <div class="iconoUsuario"><i class="fa-solid fa-circle-user" style="color: #ffffff;"></i></div>
+                    <div class="iconoFlecha"><i class="fa-solid fa-chevron-down" style="color: #ffffff;"></i></div>
+                </div> 
+            </div>
+
+
+
+            <div class="contenedorArticle">
+                <h1>Eliminar influencer</h1>
+                <div id="galeria">
+                   
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+    </div>
+
+
+    
+
+
+    
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var gestionInfluencers = document.getElementById('gestionInfluencers');
+        var submenuPerfiles = document.getElementById('submenuPerfiles');
+
+        gestionInfluencers.addEventListener('click', function(event) {
+            event.preventDefault();
+            if (submenuPerfiles.style.display === 'block') {
+            	submenuPerfiles.style.display = 'none';
+            } else {
+            	submenuPerfiles.style.display = 'block';
+            }
+        });
+
+        var enlacesSubMenu = submenuPerfiles.querySelectorAll('a');
+        enlacesSubMenu.forEach(function(enlace) {
+            enlace.addEventListener('click', function(event) {
+            	submenuPerfiles.style.display = 'none'; // Oculta el submenu al hacer clic en un enlace
+                // Redirige al enlace href
+                var href = this.getAttribute('href');
+                window.location.href = href;
+            });
+        });
+    });
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var gestionUsuarios = document.getElementById('gestionUsuarios');
+        var submenuUsuarios = document.getElementById('submenuUsuarios');
+
+        gestionUsuarios.addEventListener('click', function(event) {
+            event.preventDefault();
+            if (submenuUsuarios.style.display === 'block') {
+                submenuUsuarios.style.display = 'none';
+            } else {
+                submenuUsuarios.style.display = 'block';
+            }
+        });
+
+        var enlacesSubMenuUsuarios = submenuUsuarios.querySelectorAll('a'); // Cambia el nombre de la variable
+        enlacesSubMenuUsuarios.forEach(function(enlace) { // Cambia el nombre de la variable
+            enlace.addEventListener('click', function(event) {
+                submenuUsuarios.style.display = 'none'; // Oculta el submenu al hacer clic en un enlace
+                // Redirige al enlace href
+                var href = this.getAttribute('href');
+                window.location.href = href;
+            });
+        });
+    });
+</script>
+
+
+
+
+
+</html>
+
+
+                        
+                        
+                        
+                        
+                        
